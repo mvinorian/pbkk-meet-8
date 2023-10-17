@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Module\Product\Presentation\Controller\ProductController;
+use App\Http\Module\Cart\Presentation\Controller\CartController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/products', [ProductController::class, 'index'])->name('product');
+Route::get('/carts', [CartController::class, 'index']);
 
 Route::get('ping', function () {
     return csrf_token();

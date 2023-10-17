@@ -4,17 +4,26 @@ namespace App\Http\Module\Product\Presentation\Controller;
 
 use App\Http\Module\Product\Application\Services\CreateProduct\CreateProductRequest;
 use App\Http\Module\Product\Application\Services\CreateProduct\CreateProductService;
+use App\Http\Module\Product\Domain\Model\Product;
 use Illuminate\Http\Request;
 
 class ProductController
 {
     public function __construct(
         private CreateProductService $create_product_service
-    )
-    {
+    ) {
     }
 
-    public function createProduct(Request $request){
+    public function index()
+    {
+        $products = Product::all();
+        return view('product', [
+            'products' => $products
+        ]);
+    }
+
+    public function createProduct(Request $request)
+    {
         // dd($request);
         $request = new CreateProductRequest(
             $request->input('nama'),
